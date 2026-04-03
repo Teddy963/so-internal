@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>SO — Welcome Series</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #181818;
+  font-family: -apple-system, 'Helvetica Neue', sans-serif;
+  color: #1a1a1a;
+}
+
+/* ── 플로우 섹션 ── */
+.flow-section {
+  padding: 64px 48px 80px;
+  border-bottom: 1px solid #2a2a2a;
+}
+.flow-section.h1 { background: #181818; }
+.flow-section.h2 { background: #1c1a18; }
+
+/* ── 플로우 헤더 ── */
+.flow-header {
+  max-width: 1400px;
+  margin: 0 auto 40px;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+.flow-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+.h1 .flow-badge { background: #2a3a5a; color: #7aa0e0; }
+.h2 .flow-badge { background: #3a2020; color: #e07a7a; }
+
+.flow-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+}
+.flow-desc {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* ── 이메일 카드 열 ── */
+.email-row {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+@media (max-width: 1100px) {
+  .email-row { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── 시퀀스 번호 + 타이밍 ── */
+.seq-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.seq-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #2e2e2e;
+}
+.seq-num { color: #888; }
+
+/* ── 이메일 카드 ── */
+.card {
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 12px 48px rgba(0,0,0,.5);
+}
+
+/* ── 히어로 ── */
+.hero {
+  position: relative;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px 18px 14px;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  /* 실사 이미지: background-image: url('...'); background-size: cover; background-position: center; */
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.04) 40%, rgba(0,0,0,.58) 100%);
+}
+.hero-tag {
+  position: relative;
+  font-size: 8.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.75);
+  margin-bottom: 5px;
+}
+.hero-hl {
+  position: relative;
+  font-size: 22px;
+  font-weight: 700;
+  font-style: italic;
+  color: #fff;
+  line-height: 1.2;
+}
+
+/* ── 발신자 ── */
+.sender {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 14px 2px;
+}
+.avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: #f0ece8;
+  border: 1.5px solid #e0dbd5;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  color: #999;
+  flex-shrink: 0;
+  font-weight: 300;
+}
+.sender-name { font-size: 12px; font-weight: 600; color: #1a1a1a; }
+.sender-email { font-size: 9.5px; color: #bbb; }
+
+/* ── 제목/프리뷰 ── */
+.subj-block { padding: 6px 14px 2px; }
+.subj { font-size: 12.5px; font-weight: 700; }
+.prev { font-size: 10px; color: #aaa; font-style: italic; margin-top: 1px; }
+
+/* ── 채팅 ── */
+.chat {
+  padding: 8px 14px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.b {
+  display: inline-block;
+  padding: 7px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  line-height: 1.5;
+  max-width: 90%;
+}
+.bi {  /* in — left gray */
+  background: #f0f0f0;
+  color: #1a1a1a;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+.bi.bold { font-weight: 600; }
+.bo {  /* out — right pink */
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+  font-size: 11.5px;
+  font-weight: 500;
+}
+.h1 .bo { background: #5577cc; color: #fff; }
+.h2 .bo { background: #cc4444; color: #fff; }
+
+.bs {  /* small pill */
+  background: #f0f0f0;
+  color: #555;
+  font-size: 11px;
+  padding: 5px 11px;
+  border-radius: 12px;
+  align-self: flex-start;
+}
+.callout {
+  margin: 8px 2px 4px;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #1a1a1a;
+}
+.callout em { font-style: italic; font-weight: 400; }
+.cta {
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 7px 13px;
+  border-radius: 12px;
+  align-self: flex-start;
+  letter-spacing: .01em;
+  margin-top: 4px;
+}
+.emoji { padding: 8px 14px 4px; font-size: 20px; }
+
+/* ── 푸터 그라디언트 ── */
+.card-footer {
+  margin-top: 14px;
+  height: 52px;
+  border-radius: 0 0 24px 24px;
+}
+.h1 .card-footer { background: linear-gradient(to bottom, #e8eef8, #4466bb); }
+.h2 .card-footer { background: linear-gradient(to bottom, #f5e8e8, #bb3333); }
+
+/* ── 페이지 타이틀 ── */
+.page-top {
+  padding: 40px 48px 0;
+  max-width: calc(1400px + 96px);
+  margin: 0 auto;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.page-top h1 {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #555;
+}
+.page-top span { font-size: 11px; color: #3a3a3a; }
+</style>
+</head>
+<body>
+
+<div class="page-top">
+  <h1>Sensitive Ones · Welcome Series</h1>
+  <span>A/B Test — H1 vs H2 · 8 emails total</span>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     H1 — BRAND PHILOSOPHY FIRST
+══════════════════════════════════════════════ -->
+<div class="flow-section h1">
+
+  <div class="flow-header">
+    <div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;">
+        <span class="flow-badge">H1</span>
+        <span class="flow-title">Brand Philosophy First</span>
+      </div>
+      <div class="flow-desc">Triggered: list join &nbsp;·&nbsp; Sequence: Day 0 → +2d → +2d → +2d &nbsp;·&nbsp; Goal: build conviction before purchase</div>
+    </div>
+  </div>
+
+  <div class="email-row">
+
+    <!-- H1-01 -->
+    <div>
+      <div class="seq-label"><span class="seq-num">01</span> Day 0 — immediately</div>
+      <div class="card">
+        <div class="hero">
+          <div class="hero-bg" style="background:linear-gradient(150deg,#c8b8b0,#806050);"></div>
+          <div class="hero-overlay"></div>
+          <div class="hero-tag">Inner care for sensitive problems</div>
+          <!-- ✏️ hero headline -->
+          <div class="hero-hl">It's awareness.</div>
+        </div>
+        <div class="sender">
+          <div class="avatar">S</div>
+          <div>
+            <div class="sender-name">Alex from Sensitive Ones</div>
+            <div class="sender-email">hello@forsensitiveones.com</div>
+          </div>
+        </div>
+        <div class="subj-block">
+          <!-- ✏️ subject / preview -->
+          <div class="subj">You noticed.</div>
+          <div class="prev">There's a certain kind of person who pays attention.</div>
+        </div>
+        <div class="chat">
+          <!-- ✏️ bubbles -->
+          <div class="b bi bold">Some people notice more.</div>
+          <div class="b bs">They notice how their skin reacts</div>
+          <div class="b bs">They notice how their body responds to stress</div>
+          <div class="b bs">They notice when something feels right, or off</div>
+          <div class="b bi">Most brands call that "sensitive"</div>
+          <div class="b bi">We call it awareness</div>
+          <div class="b bo">So who is this?</div>
+          <div class="callout">sensitive ones was created for people who <em>pay attention to their bodies.</em></div>
+          <div class="b bs">Not louder routines</div>
+          <div class="b bs">Not exaggerated promises</div>
+          <div class="b bs">Just thoughtful inner care</div>
+          <div class="b bo">Sounds great</div>
+          <div class="b bi">We're building this slowly and carefully.</div>
+        </div>
+        <div class="emoji">❤️</div>
+        <div class="card-footer"></div>
+      </div>
+    </div>
+
+    <!-- H1-02 -->
+    <div>
+      <div class="seq-label"><span class="seq-num">02</span> +2 days</div>
+      <div class="card">
+        <div class="hero">
+          <div class="hero-bg" style="background:linear-gradient(150deg,#b0a8b0,#605870);"></div>
+          <div class="hero-overlay"></div>
+          <div class="hero-tag">Inner care for sensitive problems</div>
+          <div class="hero-hl">Which means<br>the inside matters too.</div>
+        </div>
+        <div class="sender">
+          <div class="avatar">S</div>
+          <div>
+            <div class="sender-name">Alex from Sensitive Ones</div>
+            <div class="sender-email">hello@forsensitiveones.com</div>
+          </div>
+        </div>
+        <div class="subj-block">
+          <div class="subj">The industry problem.</div>
+          <div class="prev">Most products stop at the surface.</div>
+        </div>
+        <div class="chat">
+          <div class="b bi bold">Your skin is often treated like something separate.</div>
+          <div class="b bi">But biologically, it's part of the same system as everything else in the body.</div>
+          <div class="b bo">So that means …</div>
+          <div class="b bs">skin health is influenced by many factors</div>
+          <div class="b bs">including nutrition, routine, and lifestyle</div>
+          <div class="b bi">sensitive ones was created to explore that connection.</div>
+          <div class="b bo">Ohhhh</div>
+          <div class="callout">Not as a replacement for topical care, but as <em>another way to support the body.</em></div>
+        </div>
+        <div class="card-footer"></div>
+      </div>
+    </div>
+
+    <!-- H1-03 -->
+    <div>
+      <div class="seq-label"><span class="seq-num">03</span> +2 days</div>
+      <div class="card">
+        <div class="hero">
+          <div class="hero-bg" style="background:linear-gradient(150deg,#b8b0a0,#706040);"></div>
+          <div class="hero-overlay"></div>
+          <div class="hero-tag">Inner care for sensitive problems</div>
+          <div class="hero-hl">What's inside<br>actually matters.</div>
+        </div>
+        <div class="sender">
+          <div class="avatar">S</div>
+          <div>
+            <div class="sender-name">Alex from Sensitive Ones</div>
+            <div class="sender-email">hello@forsensitiveones.com</div>
+          </div>
+        </div>
+        <div class="subj-block">
+          <div class="subj">What Skin Support does.</div>
+          <div class="prev">We'll show you exactly what you're putting in your body.</div>
+        </div>
+        <div class="chat">
+          <div class="b bi bold">We believe you deserve to know exactly what you're putting in your body.</div>
+          <div class="b bo">What does it do?</div>
+          <div class="b bs">Hydration balance — from within</div>
+          <div class="b bs">Oxidative stress management</div>
+          <div class="b bs">Collagen nutritional support</div>
+          <div class="b bs">Nutritional foundation</div>
+          <div class="b bi">No fillers. No unnecessary additives.</div>
+          <div class="b bi">Every ingredient has a clear reason to be there.</div>
+          <div class="b bo">Can I ask more?</div>
+          <div class="b bi">Just reply. We read every email.</div>
+        </div>
+        <div class="card-footer"></div>
+      </div>
+    </div>
+
+    <!-- H1-04 -->
+    <div>
+      <div class="seq-label"><span class="seq-num">04</span> +2 days</div>
+      <div class="card">
+        <div class="hero">
+          <div class="hero-bg" style="background:linear-gradient(150deg,#a8b0b8,#406080);"></div>
+          <div class="hero-overlay"></div>
+          <div class="hero-tag">Inner care for sensitive problems</div>
+          <div class="hero-hl">For the ones<br>who noticed first.</div>
+        </div>
+        <div class="sender">
+          <div class="avatar">S</div>
+          <div>
+            <div class="sender-name">Alex from Sensitive Ones</div>
+            <div class="sender-email">hello@forsensitiveones.com</div>
+          </div>
+        </div>
+        <div class="subj-block">
+          <div class="subj">For the ones who noticed first.</div>
+          <div class="prev">If it's resonated — this is the right time to try it.</div>
+        </div>
+        <div class="chat">
+          <div class="b bi">You've been with us for a few days now.</div>
+          <div class="b bi">You know what we believe, what's inside, and why we built it.</div>
+          <div class="b bo">I think I'm ready.</div>
+          <div class="callout">If it's resonated —<br><em>this is the right time.</em></div>
+          <div class="b cta">→ Shop Skin Support</div>
+          <div class="b bi">Results build gradually. That's not a caveat — it's the point.</div>
+          <div class="b bi">Have questions before you order? Just reply.</div>
+        </div>
+        <div class="card-footer"></div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /H1 -->
+
+
+<!-- ══════════════════════════════════════════════
+     H2 — CONVERSION FIRST
+══════════════════════════════════════════════ -->
+<div class="flow-section h2">
+
+  <div class="flow-header">
+    <div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;">
+        <span class="flow-badge">H2</span>
+        <span class="flow-title">Conversion First</span>
+      </div>
+      <div class="flow-desc">Triggered: list join &nbsp;·&nbsp; Sequence: Day 0 → +2d → +2d → +3d &nbsp;·&nbsp; Code: WELCOME10 (10% off, expires Day 7)</div>
+    </div>
+  </div>
+
+  <div class="email-row">
+
+    <!-- H2-01 -->
+    <div>
+      <div class="seq-label"><span class="seq-num">01</span> Day 0 — immediately</div>
+      <div class="card">
+        <div class="hero">
+          <div class="hero-bg" style="background:linear-gradient(150deg,#c0a890,#805840);"></div>
+          <div class="hero-overlay"></div>
+          <div class="hero-tag">Inner care for sensitive problems</div>
+          <div class="hero-hl">Welcome.<br>Here's something.</div>
+        </div>
+        <div class="sender">
+          <div class="avatar">S</div>
+          <div>
+            <div class="sender-name">Alex from Sensitive Ones</div>
+            <div class="sender-email">hello@forsensitiveones.com</div>
+          </div>
+        </div>
+        <div class="subj-block">
+          <div class="subj">Welcome. Here's something.</div>
+          <div class="prev">10% off your first order — good for 7 days.</div>
+        </div>
+        <div class="chat">
+          <div class="b bi bold">Thanks for finding us.</div>
+          <div class="b bi">We built Sensitive Ones around one belief: most people are paying attention to the wrong layer.</div>
+          <div class="b bi">Skincare stops at the surface. Skin Support starts underneath it.</div>
+          <div class="b bo">Can I try it?</div>
+          <div class="callout">10% off your first order.<br><em>Good for 7 days.</em></div>
+          <div class="b cta">→ Use code WELCOME10</div>
+        </div>
+        <div class="card-footer"></div>
+      </div>
+    </div>
+
+    <!-- H2-02 -->
+    <div>
+      <div class="seq-label"><span class="seq-num">02</span> +2 days</div>
+      <div class="card">
+        <div class="hero">
+          <div class="hero-bg" style="background:linear-gradient(150deg,#b8a898,#785840);"></div>
+          <div class="hero-overlay"></div>
+          <div class="hero-tag">Inner care for sensitive problems</div>
+          <div class="hero-hl">Three things<br>Skin Support does.</div>
+        </div>
+        <div class="sender">
+          <div class="avatar">S</div>
+          <div>
+            <div class="sender-name">Alex from Sensitive Ones</div>
+            <div class="sender-email">hello@forsensitiveones.com</div>
+          </div>
+        </div>
+        <div class="subj-block">
+          <div class="subj">Three things Skin Support does.</div>
+          <div class="prev">The quick version, if you haven't had time to explore.</div>
+        </div>
+        <div class="chat">
+          <div class="b bi">Skin Support is a daily supplement that addresses skin health from the inside out.</div>
+          <div class="b bo">What does it do exactly?</div>
+          <div class="b bs">1. Support hydration at the cellular level</div>
+          <div class="b bs">2. Reduce oxidative stress</div>
+          <div class="b bs">3. Nutritional foundation for collagen</div>
+          <div class="b bi">One daily serving. No complicated regimen.</div>
+          <div class="b bi">Your welcome code <strong>WELCOME10</strong> is still valid.</div>
+          <div class="b cta">→ Shop Skin Support</div>
+        </div>
+        <div class="card-footer"></div>
+      </div>
+    </div>
+
+    <!-- H2-03 -->
+    <div>
+      <div class="seq-label"><span class="seq-num">03</span> +2 days</div>
+      <div class="card">
+        <div class="hero">
+          <div class="hero-bg" style="background:linear-gradient(150deg,#b0a8a0,#706858);"></div>
+          <div class="hero-overlay"></div>
+          <div class="hero-tag">Inner care for sensitive problems</div>
+          <div class="hero-hl">One object.<br>Daily.</div>
+        </div>
+        <div class="sender">
+          <div class="avatar">S</div>
+          <div>
+            <div class="sender-name">Alex from Sensitive Ones</div>
+            <div class="sender-email">hello@forsensitiveones.com</div>
+          </div>
+        </div>
+        <div class="subj-block">
+          <div class="subj">One object. Daily.</div>
+          <div class="prev">The things that actually work tend to be simple.</div>
+        </div>
+        <div class="chat">
+          <div class="b bi bold">The things that actually work tend to be simple.</div>
+          <div class="b bi">One serving of Skin Support, once a day.</div>
+          <div class="b bo">That's it?</div>
+          <div class="b bi">That's the whole ritual.</div>
+          <div class="callout">The skin you're working toward is built in the weeks <em>you keep showing up.</em></div>
+          <div class="b bi">WELCOME10 is still open — 10% off.</div>
+          <div class="b cta">→ Shop Skin Support</div>
+        </div>
+        <div class="card-footer"></div>
+      </div>
+    </div>
+
+    <!-- H2-04 -->
+    <div>
+      <div class="seq-label"><span class="seq-num">04</span> +3 days &nbsp;<span style="color:#cc4444;font-weight:700;">⚠ offer expires</span></div>
+      <div class="card">
+        <div class="hero">
+          <div class="hero-bg" style="background:linear-gradient(150deg,#c09090,#904040);"></div>
+          <div class="hero-overlay"></div>
+          <div class="hero-tag">Inner care for sensitive problems</div>
+          <div class="hero-hl">Offer ends<br>tonight.</div>
+        </div>
+        <div class="sender">
+          <div class="avatar">S</div>
+          <div>
+            <div class="sender-name">Alex from Sensitive Ones</div>
+            <div class="sender-email">hello@forsensitiveones.com</div>
+          </div>
+        </div>
+        <div class="subj-block">
+          <div class="subj">Offer ends tonight.</div>
+          <div class="prev">WELCOME10 expires at midnight.</div>
+        </div>
+        <div class="chat">
+          <div class="b bi">Your welcome discount — <strong>WELCOME10</strong> — expires tonight.</div>
+          <div class="b bo">Tonight?</div>
+          <div class="b bi">If you've been thinking about it, this is the moment.</div>
+          <div class="b cta">→ Shop Skin Support — 10% off</div>
+          <div class="b bi">No pressure after this.</div>
+          <div class="b bi">Skin Support will still be here. But the offer won't.</div>
+        </div>
+        <div class="card-footer"></div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /H2 -->
+
+<div style="text-align:center;padding:32px;font-size:10px;color:#333;letter-spacing:.1em;">
+  SENSITIVE ONES &nbsp;·&nbsp; WELCOME SERIES &nbsp;·&nbsp; TEST DRAFT
+</div>
+
+</body>
+</html>

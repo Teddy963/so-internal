@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sensitive Ones — Internal</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #111;
+  font-family: -apple-system, 'Helvetica Neue', sans-serif;
+  color: #fff;
+  min-height: 100vh;
+  padding: 64px 48px;
+}
+.header {
+  margin-bottom: 56px;
+}
+.header h1 {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 8px;
+}
+.header p {
+  font-size: 11px;
+  color: #333;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  max-width: 900px;
+}
+a.card {
+  display: block;
+  background: #1a1a1a;
+  border: 1px solid #222;
+  border-radius: 14px;
+  padding: 24px;
+  text-decoration: none;
+  transition: border-color .15s, background .15s;
+}
+a.card:hover {
+  background: #202020;
+  border-color: #333;
+}
+.card-tag {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 10px;
+}
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #e8e8e8;
+  margin-bottom: 6px;
+}
+.card-desc {
+  font-size: 11.5px;
+  color: #555;
+  line-height: 1.5;
+}
+.card-arrow {
+  font-size: 16px;
+  color: #333;
+  margin-top: 16px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Sensitive Ones · Internal</h1>
+  <p>내부 공유용 페이지 모음</p>
+</div>
+
+<div class="grid">
+
+  <a class="card" href="./welcome-series/">
+    <div class="card-tag">Klaviyo · Email</div>
+    <div class="card-title">Welcome Series</div>
+    <div class="card-desc">H1 (Brand Philosophy) vs H2 (Conversion First) — A/B test copy preview</div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <!-- 새 페이지 추가 시 여기에 card 블록 복사 -->
+
+</div>
+
+</body>
+</html>
