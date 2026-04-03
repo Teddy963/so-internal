@@ -183,6 +183,78 @@ body {
 .page-top h1 { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #444; }
 .page-top a { font-size: 11px; color: #333; text-decoration: none; }
 .page-top a:hover { color: #666; }
+
+/* ── Comments ── */
+.comment-box {
+  margin-top: 12px;
+}
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.comment-item {
+  background: #222;
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-size: 11px;
+  color: #ccc;
+  line-height: 1.5;
+  position: relative;
+}
+.comment-meta {
+  font-size: 9px;
+  color: #555;
+  margin-bottom: 3px;
+  letter-spacing: .04em;
+}
+.comment-delete {
+  position: absolute;
+  top: 8px; right: 10px;
+  background: none; border: none;
+  color: #444; cursor: pointer;
+  font-size: 11px; line-height: 1;
+  padding: 0;
+}
+.comment-delete:hover { color: #888; }
+.comment-input {
+  display: flex;
+  gap: 7px;
+  align-items: flex-end;
+}
+.comment-input textarea {
+  flex: 1;
+  background: #222;
+  border: 1px solid #2e2e2e;
+  border-radius: 10px;
+  color: #ccc;
+  font-size: 11px;
+  line-height: 1.5;
+  padding: 8px 11px;
+  resize: none;
+  height: 38px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color .15s;
+}
+.comment-input textarea:focus { border-color: #444; }
+.comment-input textarea::placeholder { color: #3a3a3a; }
+.comment-input button {
+  background: #2a2a2a;
+  border: 1px solid #333;
+  border-radius: 10px;
+  color: #888;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 0 13px;
+  height: 38px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .15s, color .15s;
+  font-family: inherit;
+}
+.comment-input button:hover { background: #333; color: #ccc; }
 </style>
 </head>
 <body>
@@ -236,6 +308,13 @@ body {
         </div>
         <div class="card-footer"></div>
       </div>
+      <div class="comment-box" data-id="h1-01">
+        <div class="comments-list"></div>
+        <div class="comment-input">
+          <textarea placeholder="코멘트 남기기..."></textarea>
+          <button>남기기</button>
+        </div>
+      </div>
     </div>
 
     <!-- H1-02 -->
@@ -269,6 +348,13 @@ body {
           <div class="b bi">I built Skin Support for people who are willing to wait for the real thing.</div>
         </div>
         <div class="card-footer"></div>
+      </div>
+      <div class="comment-box" data-id="h1-02">
+        <div class="comments-list"></div>
+        <div class="comment-input">
+          <textarea placeholder="코멘트 남기기..."></textarea>
+          <button>남기기</button>
+        </div>
       </div>
     </div>
 
@@ -305,6 +391,13 @@ body {
         </div>
         <div class="card-footer"></div>
       </div>
+      <div class="comment-box" data-id="h1-03">
+        <div class="comments-list"></div>
+        <div class="comment-input">
+          <textarea placeholder="코멘트 남기기..."></textarea>
+          <button>남기기</button>
+        </div>
+      </div>
     </div>
 
     <!-- H1-04 -->
@@ -337,6 +430,13 @@ body {
           <div class="b bi">Questions before you order? Reply here. I read every email.</div>
         </div>
         <div class="card-footer"></div>
+      </div>
+      <div class="comment-box" data-id="h1-04">
+        <div class="comments-list"></div>
+        <div class="comment-input">
+          <textarea placeholder="코멘트 남기기..."></textarea>
+          <button>남기기</button>
+        </div>
       </div>
     </div>
 
@@ -387,6 +487,13 @@ body {
         </div>
         <div class="card-footer"></div>
       </div>
+      <div class="comment-box" data-id="h2-01">
+        <div class="comments-list"></div>
+        <div class="comment-input">
+          <textarea placeholder="코멘트 남기기..."></textarea>
+          <button>남기기</button>
+        </div>
+      </div>
     </div>
 
     <!-- H2-02 -->
@@ -421,6 +528,13 @@ body {
           <div class="b cta">→ Shop Skin Support</div>
         </div>
         <div class="card-footer"></div>
+      </div>
+      <div class="comment-box" data-id="h2-02">
+        <div class="comments-list"></div>
+        <div class="comment-input">
+          <textarea placeholder="코멘트 남기기..."></textarea>
+          <button>남기기</button>
+        </div>
       </div>
     </div>
 
@@ -457,6 +571,13 @@ body {
         </div>
         <div class="card-footer"></div>
       </div>
+      <div class="comment-box" data-id="h2-03">
+        <div class="comments-list"></div>
+        <div class="comment-input">
+          <textarea placeholder="코멘트 남기기..."></textarea>
+          <button>남기기</button>
+        </div>
+      </div>
     </div>
 
     <!-- H2-04 -->
@@ -489,6 +610,13 @@ body {
         </div>
         <div class="card-footer"></div>
       </div>
+      <div class="comment-box" data-id="h2-04">
+        <div class="comments-list"></div>
+        <div class="comment-input">
+          <textarea placeholder="코멘트 남기기..."></textarea>
+          <button>남기기</button>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -497,6 +625,68 @@ body {
 <div style="text-align:center;padding:32px;font-size:10px;color:#2a2a2a;letter-spacing:.1em;">
   SENSITIVE ONES &nbsp;·&nbsp; WELCOME SERIES &nbsp;·&nbsp; TEST DRAFT
 </div>
+
+<script>
+  const STORAGE_KEY = 'so-welcome-comments';
+
+  function loadComments() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+    catch { return {}; }
+  }
+
+  function saveComments(data) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }
+
+  function renderComments(box, id) {
+    const data = loadComments();
+    const list = box.querySelector('.comments-list');
+    list.innerHTML = '';
+    (data[id] || []).forEach((c, i) => {
+      const item = document.createElement('div');
+      item.className = 'comment-item';
+      item.innerHTML = `
+        <div class="comment-meta">${c.date}</div>
+        <div>${c.text}</div>
+        <button class="comment-delete" data-index="${i}" title="삭제">✕</button>
+      `;
+      item.querySelector('.comment-delete').addEventListener('click', () => {
+        const d = loadComments();
+        d[id].splice(i, 1);
+        saveComments(d);
+        renderComments(box, id);
+      });
+      list.appendChild(item);
+    });
+  }
+
+  document.querySelectorAll('.comment-box').forEach(box => {
+    const id = box.dataset.id;
+    renderComments(box, id);
+
+    const textarea = box.querySelector('textarea');
+    const btn = box.querySelector('button');
+
+    textarea.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); btn.click(); }
+    });
+
+    btn.addEventListener('click', () => {
+      const text = textarea.value.trim();
+      if (!text) return;
+      const d = loadComments();
+      if (!d[id]) d[id] = [];
+      const now = new Date();
+      d[id].push({
+        text,
+        date: now.toLocaleDateString('ko-KR', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+      });
+      saveComments(d);
+      textarea.value = '';
+      renderComments(box, id);
+    });
+  });
+</script>
 
 </body>
 </html>
